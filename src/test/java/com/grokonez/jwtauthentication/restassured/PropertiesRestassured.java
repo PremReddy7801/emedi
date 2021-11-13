@@ -19,8 +19,8 @@ public class PropertiesRestassured {
 	
 	@Test         //properties are working for only junit
 	public void getSutdents() {
-		RestAssured.given().get(baseUrl).then().statusCode(200);
-		System.out.println(jdbc);
+//		RestAssured.given().get(baseUrl).then().statusCode(200);
+//		System.out.println(jdbc);
 		
 	}
 	
