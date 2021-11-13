@@ -1,9 +1,6 @@
 pipeline{
 	agent any
-		tools{
-			jdk 'JAVA_11'
-			mave 'Maven 3.3.9'
-}
+		
 		stages{
 			stage('build'){
 			   steps{
@@ -11,7 +8,7 @@ pipeline{
 				}
 			     }
 			stage('COdeAnalysis'){
-					 steps{ junit allowEmptyResults:true }  
+					 steps{ junit allowEmptyResults:true, '**/target/surefire-reports/*.xml' }  
 					  }
 			}
 }
