@@ -1,3 +1,4 @@
+
 package com.app.emedi;
 
 import com.google.common.base.Predicates;
@@ -31,10 +32,12 @@ public class SwaggerConfig {
 	}
 
 	private ApiInfo metadata() {
-		return new ApiInfoBuilder().title("JSON Web Token Authentication API").description(
-				"This is a sample JWT authentication service. You can find out more about JWT at [https://jwt.io/](https://jwt.io/).to test the authorization filters. Once you have successfully logged in and obtained the token, you should click on the right top button `Authorize` and introduce it with the prefix \"Bearer \".")//
+		return new ApiInfoBuilder().title("hospital domine sample project").description(
+				"This is a sample application about how add patients and retraive their data based on id")
+				.license("softwareengineerprem@gamil.com")
+				.licenseUrl("https://www.google.com")
 				.version("1.0.0")//
-				.license("sample").licenseUrl("sample").contact(new Contact(null, null, "surendrathota999@gmail.com"))
+				.contact(new Contact("prem", "https://www.google.com", "softwareengineerprem@gamil.com"))
 				.build();
 	}
 

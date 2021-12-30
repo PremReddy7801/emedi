@@ -19,8 +19,13 @@ import com.app.emedi.bean.PersonalInfo;
 import com.app.emedi.repository.PatientRepositoryImpl;
 import com.app.emedi.service.PatientService;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
-@RequestMapping("medi/patient")
+@RequestMapping("/medi/patient/")
 @CrossOrigin
 public class PatientController {
 
@@ -39,12 +44,12 @@ public class PatientController {
 //
 //	}
 
-	@GetMapping("/get-patient-with-createdBy")
+	@GetMapping("get-patient-with-createdBy")
 	public List<PersonalInfo> getPersonalInfo(@RequestParam String createdBy) {
 		return patientService.getPersonalInfo(createdBy);
 	}
 
-	@PutMapping("/update-patient")
+	@PutMapping("update-patient")
 	public String updatePersonalInfo(@RequestBody @Valid PersonalInfo personalInfo) {
 		personalInfo.setFullName(fullName(personalInfo.getFirstName(),personalInfo.getLastName()));
 		System.out.println(personalInfo.getFullName());
@@ -53,12 +58,12 @@ public class PatientController {
 
 	}
 
-	@DeleteMapping("/delete-patient")
+	@DeleteMapping("delete-patient")
 	public String deletePersonalInfo(@RequestParam String patientId) {
 		return patientService.deletePersonalInfo(patientId);
 	}
 
-	@PostMapping("/add-patient")
+	@PostMapping("add-patient")
 	public PersonalInfo addPatientWithVisits(@RequestBody @Valid PersonalInfo personalInfo) {
 		personalInfo.setFullName(fullName(personalInfo.getFirstName(),personalInfo.getLastName()));
 		System.out.println("personal info :----------------------"+personalInfo);
@@ -66,14 +71,14 @@ public class PatientController {
 
 	}
 
-	@GetMapping("/get-all-patients")
+	@GetMapping("get-all-patients")
 	public List<PersonalInfo> getAllPatients() {
 		System.out.println("all patient");
 		return patientService.getAllPatients();
 
 	}
 
-	@GetMapping("/get-patient-by-id")
+	@GetMapping("get-patient-by-id")
 	public PersonalInfo getPatientById(@RequestParam String patientId) {
 		return patientService.getPatientById(patientId);
 
@@ -83,13 +88,17 @@ public class PatientController {
 //	public List<PersonalInfo> getOnlyPatientsList() {
 //		return patientService.getOnlyPatientsList();
 //	}
-
-	@GetMapping("/get-patientid-by-phonenumber")
-	public  List<String> getPstientIdByPhoneNumber( @RequestParam String phoneNumber) {
+	@ApiOperation(nickname = "find by phone number",
+			value = "phonenumber required",notes = "gby-phonenumber",consumes = "onether api",produces = "patient object")
+	@ApiResponses(value = {
+			@ApiResponse(code =200,message = "succesfull" )
+	})
+	@GetMapping("get-patientid-by-phonenumber")
+	public  List<String> getPstientIdByPhoneNumber(@ApiParam(value = "phone number",required = true,defaultValue = "9441191045",type = "string",name = "phone",example = "73060809614") @RequestParam String phoneNumber) {
 		System.out.println("=====================================================");
 		return patientService.getPstientIdByPhoneNumber(phoneNumber);
 	}
-	@GetMapping("/get-patientid-by-phone-name")
+	@GetMapping("get-patientid-by-phone-name")
 	public  String getPstientIdByPhoneAndName( @RequestParam String phoneNumber ,@RequestParam String firstName , @RequestParam String lastName  ) {
 		String fullName =firstName+lastName;
 		System.out.println("fullname===========:"+fullName);

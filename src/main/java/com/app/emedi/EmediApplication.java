@@ -7,6 +7,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
 public class EmediApplication {
@@ -23,5 +25,10 @@ public class EmediApplication {
 	         }
 	      };
 	   }
+	 @Bean
+	 public PasswordEncoder encoder() {
+		return new BCryptPasswordEncoder();
+		 
+	 }
 	
 }

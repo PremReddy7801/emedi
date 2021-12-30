@@ -8,7 +8,7 @@ pipeline{
 				}
 			     }
 			stage('COdeAnalysis'){
-					 steps{ junit allowEmptyResults:true, '**/target/surefire-reports/*.xml' }  
+					 steps{ junit allowEmptyResults:true, '**/target/*.xml' }  
 					  }
 			}
 }

@@ -1,7 +1,5 @@
 package com.app.emedi.bean;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -10,7 +8,11 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+@ApiModel
 public class PersonalInfo {
+	@ApiModelProperty(dataType = "Strings",position = 1,value = "101")
 	String patientId;
 	@NotNull
 	String firstName;
