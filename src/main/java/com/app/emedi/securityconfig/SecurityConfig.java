@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		System.out.println("SecurityConfig class configure()");
 		CustomAuthonticationFilter authonticationFilter =new CustomAuthonticationFilter(authenticationManager());
 		authonticationFilter.setFilterProcessesUrl("/emedi/frontdesk/login");
-		http
+		http.cors().and()
 			.csrf()
 			.disable()
 			.sessionManagement()
@@ -50,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.authorizeRequests()
 				.antMatchers("/medi/patient/**").hasAnyAuthority("ROLE_USER")
 				.anyRequest()
-//				.permitAll()
+//				.permitAll();
 				.authenticated()
 				.and()
 				.addFilter(authonticationFilter)

@@ -7,14 +7,14 @@ import javax.persistence.Id;
 @Entity
 public class Role {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	Long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	Long roleId;
 	String name;
-	public Long getId() {
-		return id;
+	public Long getRoleId() {
+		return roleId;
 	}
-	public void setId(Long id) {
-		this.id = id;
+	public void setRoleId(Long roleId) {
+		this.roleId = roleId;
 	}
 	public String getName() {
 		return name;
@@ -22,18 +22,17 @@ public class Role {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public Role(Long roleId, String name) {
+		super();
+		this.roleId = roleId;
+		this.name = name;
+	}
 	public Role() {
 		super();
 	}
-	public Role(Long id, String name) {
-		super();
-		this.id = id;
-		this.name = name;
-	}
 	@Override
 	public String toString() {
-		return "Role [id=" + id + ", name=" + name + "]";
+		return "Role [roleId=" + roleId + ", name=" + name + "]";
 	}
-	
 	
 }

@@ -9,6 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -24,7 +26,12 @@ public class FrontDesk {
 	String password;
 	String phoneNumber;
 	String email;
-	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.EAGER)
+	 @JoinTable(
+	            name = "front_desk_roles",
+	            joinColumns = @JoinColumn(name = "userId"),
+	            inverseJoinColumns = @JoinColumn(name = "roleId")
+	            )
 	private List<Role> roles;
 	public Long getUserId() {
 		return userId;

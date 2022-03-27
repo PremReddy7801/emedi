@@ -3,6 +3,7 @@ package com.app.emedi.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,12 +18,14 @@ import com.app.emedi.service.FrontDeskUserService;
 
 @RestController
 @RequestMapping("/emedi/frontdesk/")
+@CrossOrigin
 public class FrontDeskController {
 	@Autowired
 	FrontDeskUserService frontDeskUserService;
 	
 	@PostMapping("signup")
 	public FrontDesk saveUser(@RequestBody FrontDesk frontDesk) {
+		System.out.println("xxxxxxxxxxxxxxxxxxxxx");
 		return frontDeskUserService.saveUser(frontDesk);
 		
 	}
@@ -42,6 +45,21 @@ public class FrontDeskController {
 	public FrontDesk updateFrontDeskUser(@RequestBody FrontDesk frontDesk) {
 		return frontDeskUserService.updateFrontDeskUser(frontDesk);
 	}
-
+	@GetMapping("user/password")
+	public String getPassword(@RequestParam String email) {
+		sendPasswordTomail(email);
+		return frontDeskUserService.getPassword(email);
+	}
 	
+	@PutMapping("user/updatepassword")
+	public FrontDesk updatePassword(@RequestParam String email,@RequestParam String password) {
+		return frontDeskUserService.updatePassword(email, password);
+	}
+	private void sendPasswordTomail(String email) {
+		
+	}
+	@GetMapping("signup/sample")
+	public String sampleEndPoint() {
+		return "running fine";
+		}
 }

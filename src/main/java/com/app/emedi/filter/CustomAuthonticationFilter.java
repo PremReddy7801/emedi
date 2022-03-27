@@ -63,13 +63,13 @@ public class CustomAuthonticationFilter  extends UsernamePasswordAuthenticationF
 				.withIssuer(request.getRequestURI().toString())
 				.sign(algorithm);
 		
-		 response.setHeader("accesstoken", accessToken);
-		  response.setHeader("refreshtoken", refreshToken);
+		 response.setHeader("accessToken", accessToken);
+		  response.setHeader("refreshToken", refreshToken);
 		  
 		System.out.println("accessToken :"+accessToken);
 		Map<String, String> responseToken = new HashMap<>();
-		responseToken.put("access token", accessToken);
-		responseToken.put("refresh token", refreshToken);
+		responseToken.put("accessToken", accessToken);
+		responseToken.put("refreshToken", refreshToken);
 		
 		new ObjectMapper().writeValue(response.getOutputStream(),responseToken);
 		

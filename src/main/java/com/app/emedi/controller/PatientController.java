@@ -80,6 +80,7 @@ public class PatientController {
 
 	@GetMapping("get-patient-by-id")
 	public PersonalInfo getPatientById(@RequestParam String patientId) {
+		System.out.println("patientId +"+patientId);
 		return patientService.getPatientById(patientId);
 
 	}
@@ -108,4 +109,5 @@ public class PatientController {
 	public String fullName(String firstName,String lastName) {
 		return firstName+lastName;
 	}
+
 }

@@ -32,13 +32,16 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter{
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 		if (request.getServletPath().equalsIgnoreCase("/emedi/frontdesk/login")) {
-			System.out.println("CustomAuthorisationFilter class doFilterInternal() ");
+			System.out.println("if CustomAuthorisationFilter class doFilterInternal() ");
 			filterChain.doFilter(request, response);
 		} else {
-			System.out.println("CustomAuthorisationFilter class doFilterInternal() ");
+			System.out.println("else CustomAuthorisationFilter class doFilterInternal() ");
+			System.out.println("request :"+request.getHeader(HttpHeaders.AUTHORIZATION));
 			String authorisationHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
+			System.out.println("1111111");
 			if(authorisationHeader!=null&&authorisationHeader.startsWith("Bearer ")) {
 				try {
+					System.out.println("2222222");
 					String token =authorisationHeader.substring("Bearer ".length());
 					System.out.println("token :"+token);
 					Algorithm algorithm = Algorithm.HMAC256("secrate".getBytes()); 

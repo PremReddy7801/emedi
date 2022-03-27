@@ -23,6 +23,8 @@ public class FrontDeskUserServiceImpl implements FrontDeskUserService, UserDetai
 	@Autowired
 	PasswordEncoder encoder;
 	
+	
+	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		FrontDesk frontDesk = frontDesUserkRepo.findByUsername(username);
@@ -59,6 +61,17 @@ public class FrontDeskUserServiceImpl implements FrontDeskUserService, UserDetai
 	@Override
 	public FrontDesk updateFrontDeskUser(FrontDesk frontDesk) {
 		return frontDesUserkRepo.save(frontDesk);
+	}
+
+	@Override
+	public String getPassword(String email) {
+		return frontDesUserkRepo.findByEmailNative(email);
+	}
+
+	@Override
+	public FrontDesk updatePassword(String email, String password) {
+		String encodedPassword = encoder.encode(password);
+		return frontDesUserkRepo.updatePassword(email,encodedPassword);
 	}
 
 }
