@@ -40,7 +40,7 @@ public class CustomAuthonticationFilter  extends UsernamePasswordAuthenticationF
 		System.out.println("username is :" + username + " and password is :" + password);
 		System.out.println("CustomSuthonticationFilter class attemptAuthentication() ");
 		UsernamePasswordAuthenticationToken authenticationToken 
-				= new UsernamePasswordAuthenticationToken(username, password);
+				= new UsernamePasswordAuthenticationToken(username.toLowerCase(), password);
 		return manager.authenticate(authenticationToken);
 	}
 

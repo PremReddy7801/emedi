@@ -41,6 +41,7 @@ public class FrontDeskUserServiceImpl implements FrontDeskUserService, UserDetai
 
 	@Override
 	public FrontDesk saveUser(FrontDesk frontDesk) {
+		frontDesk.setUsername(frontDesk.getUsername().toLowerCase());
 		frontDesk.setPassword(encoder.encode(frontDesk.getPassword()));
 		return frontDesUserkRepo.save(frontDesk);
 	}
