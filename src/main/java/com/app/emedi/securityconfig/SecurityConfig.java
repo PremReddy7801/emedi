@@ -44,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		    	.and()
 				.authorizeRequests()
 //				.anyRequest()
-				.antMatchers("/emedi/frontdesk/**","/emedi/frontdesk/login")
+				.antMatchers("/emedi/frontdesk/**")
 				.permitAll()
 				.and()
 				.authorizeRequests()

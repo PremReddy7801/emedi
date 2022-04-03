@@ -12,10 +12,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.app.emedi.bean.entity.FrontDesk;
 import com.app.emedi.repository.FrontDesUserkRepo;
 @Service
+@Transactional
 public class FrontDeskUserServiceImpl implements FrontDeskUserService, UserDetailsService {
 	@Autowired
 	FrontDesUserkRepo frontDesUserkRepo;
@@ -64,14 +66,15 @@ public class FrontDeskUserServiceImpl implements FrontDeskUserService, UserDetai
 	}
 
 	@Override
-	public String getPassword(String email) {
-		return frontDesUserkRepo.findByEmailNative(email);
+	public FrontDesk getPassword(String email) {
+		return frontDesUserkRepo.findByEmail(email);
 	}
 
 	@Override
 	public FrontDesk updatePassword(String email, String password) {
 		String encodedPassword = encoder.encode(password);
-		return frontDesUserkRepo.updatePassword(email,encodedPassword);
+		frontDesUserkRepo.updatePassword(email,encodedPassword);
+		return null;
 	}
 
 }

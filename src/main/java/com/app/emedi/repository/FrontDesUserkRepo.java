@@ -1,6 +1,7 @@
 package com.app.emedi.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -13,16 +14,17 @@ public interface FrontDesUserkRepo extends JpaRepository<FrontDesk, Long>{
 
 	FrontDesk deleteByUsername(String usernaame);
 
-	@Query(
-			value = "select password from front_desk where email=:email limit 1",
-			nativeQuery = true
-			)
-	String findByEmailNative(@Param("email") String email);
-	
+//	@Query(
+//			value = "select password from front_desk where email=:email limit 1",
+//			nativeQuery = true
+//			)
+//	String findByEmailNative(@Param("email") String email);
+	FrontDesk findByEmail(String username);
+	@Modifying
 	@Query(
 			value = "update front_desk set password =:password where email=:email",
 			nativeQuery = true
 			)
-	FrontDesk updatePassword(@Param("email") String email, @Param("password") String encodedPassword);
+	int updatePassword(@Param("email") String email, @Param("password") String encodedPassword);
 
 }

@@ -16,7 +16,7 @@ public interface FrontDeskUserService {
 
 	public FrontDesk updateFrontDeskUser(FrontDesk frontDesk);
 
-	public String getPassword(String email);
+	public FrontDesk getPassword(String email);
 
 	public FrontDesk updatePassword(String email, String password);
 
