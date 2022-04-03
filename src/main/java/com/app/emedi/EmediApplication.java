@@ -16,15 +16,15 @@ public class EmediApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EmediApplication.class, args);
 	}
-	 @Bean
-	   public WebMvcConfigurer corsConfigurer() {
-	      return new WebMvcConfigurerAdapter() {
-	         @Override
-	         public void addCorsMappings(CorsRegistry registry) {
-	            registry.addMapping("medi/patient").allowedOrigins("http://localhost:4200");
-	         }
-	      };
-	   }
+	@Bean
+	public WebMvcConfigurer corsConfigurer() {
+		return new WebMvcConfigurer() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				registry.addMapping("/greeting-javaconfig");
+			}
+		};
+	}
 	 @Bean
 	 public PasswordEncoder encoder() {
 		return new BCryptPasswordEncoder();
